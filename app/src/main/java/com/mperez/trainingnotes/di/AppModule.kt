@@ -8,6 +8,7 @@ import com.mperez.trainingnotes.workouts.domain.repository.WorkoutRepository
 import com.mperez.trainingnotes.workouts.domain.usecase.AddExerciseUseCase
 import com.mperez.trainingnotes.workouts.domain.usecase.DeleteExerciseUseCase
 import com.mperez.trainingnotes.workouts.domain.usecase.ExerciseUseCases
+import com.mperez.trainingnotes.workouts.domain.usecase.GetExerciseUseCase
 import com.mperez.trainingnotes.workouts.domain.usecase.GetExercisesUseCase
 import dagger.Module
 import dagger.Provides
@@ -41,7 +42,8 @@ object AppModule {
         return ExerciseUseCases(
             getExercisesUseCase = GetExercisesUseCase(workoutsRepository),
             deleteExerciseUseCase = DeleteExerciseUseCase(workoutsRepository),
-            insertExerciseUseCase = AddExerciseUseCase(workoutsRepository)
+            insertExerciseUseCase = AddExerciseUseCase(workoutsRepository),
+            getExerciseUseCase = GetExerciseUseCase(workoutsRepository)
         )
     }
 

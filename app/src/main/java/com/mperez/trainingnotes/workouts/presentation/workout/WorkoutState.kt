@@ -1,7 +1,7 @@
-package com.mperez.trainingnotes.workouts.presentation.exercises
+package com.mperez.trainingnotes.workouts.presentation.workout
 
 import com.mperez.trainingnotes.workouts.domain.model.Exercise
 
-data class ExercisesState(
+data class WorkoutState(
     val exercises: List<Exercise> = emptyList()
 )

@@ -1,4 +1,4 @@
-package com.mperez.trainingnotes.workouts.presentation.exercises
+package com.mperez.trainingnotes.workouts.presentation.workout
 
 import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
@@ -14,12 +14,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ExercisesViewModel @Inject constructor(
+class WorkoutViewModel @Inject constructor(
     private val exerciseUseCases: ExerciseUseCases
 ) : ViewModel() {
 
-    private val _state = mutableStateOf(ExercisesState())
-    val state: State<ExercisesState> = _state
+    private val _state = mutableStateOf(WorkoutState())
+    val state: State<WorkoutState> = _state
 
     private var getExercisesJob: Job? = null
 
@@ -27,15 +27,16 @@ class ExercisesViewModel @Inject constructor(
         getExercises()
     }
 
-    fun onEvent(event: ExercisesEvent) {
+    fun onEvent(event: WorkoutEvent) {
         when (event) {
-            is ExercisesEvent.DeleteNote -> {
+            is WorkoutEvent.DeleteExercise -> {
                 viewModelScope.launch {
                     exerciseUseCases.deleteExerciseUseCase(exercise = event.exercise)
                 }
             }
 
-            is ExercisesEvent.Filter -> getExercises(event.category)
+            is WorkoutEvent.Filter -> getExercises(event.category)
+            WorkoutEvent.AddExercise -> Unit
         }
     }
 
